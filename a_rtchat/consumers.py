@@ -1,4 +1,4 @@
-from channels.generic.websocket import WebsocketConsumer
+from channels.generic.websocket import WebsocketConsumer # to handle websocket connections
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from asgiref.sync import async_to_sync
@@ -41,6 +41,8 @@ class ChatroomConsumer(WebsocketConsumer):
             author = self.user, 
             group = self.chatroom 
         )
+
+        
         event = {
             'type': 'message_handler',
             'message_id': message.id,
