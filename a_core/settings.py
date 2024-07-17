@@ -95,8 +95,18 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels.layers.InMemoryChannelLayer'
     }
-
 }
+
+
+# SET UP REDIS
+#CHANNEL_LAYERS = {
+#    "default": {
+#        "BACKEND": "channels_redis.core.RedisChannelLayer",
+#        "CONFIG": {
+#            "hosts": [("redis://default:nRQzQUVAhSfYkMvKRjavBlLyWqclYnSf@redis.railway.internal:6379")],
+#        },
+#    },
+#}
 
 
 # Database
