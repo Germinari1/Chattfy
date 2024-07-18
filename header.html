@@ -7,6 +7,8 @@
     </li>
     {% endif %}
 {% endfor %}
+
+
 {% for chatroom in user.chat_groups.all %}
     {% if chatroom.is_private %}
         {% for member in chatroom.members.all %}

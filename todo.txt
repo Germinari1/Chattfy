@@ -1,6 +1,3 @@
-
--> STOPPED HERE (LEC 7): https://www.youtube.com/watch?v=mfpzFemewDQ&ab_channel=AndreasJud
-
 -> online cout not appearing => should be on top left corner
 
 -> DEPLOYMENT (https://www.youtube.com/watch?v=vypZv8OVfCk&list=PL5E1F5cTSTtRSP3Qb8-gZ-Hm5AXp3VKvu&index=5&ab_channel=AndreasJud)
