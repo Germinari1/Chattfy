@@ -66,15 +66,29 @@
                     {% csrf_token %}
                     {{ form }}
                 </form>
+
+
                 <form id="chat_file_form" enctype="multipart/form-data" class="flex items-center w-full" 
-                    hx-post="{% url 'chat-file-upload' chat_group.group_name %}"
-                    hx-target="#chat_messages"
-                    hx-swap="beforeend" 
-                    _="on htmx:beforeSend reset() me" >
-                    {% csrf_token %}
-                    <input type="file" name="file" id="id_file" class="!bg-transparent text-gray-400">
-                    <button type="submit" class="whitespace-nowrap !text-sm !py-3 !px-4 h-fit">Submit File</button>
-                </form>
+                hx-post="{% url 'chat-file-upload' chat_group.group_name %}"
+                hx-target="#chat_messages"
+                hx-swap="beforeend" 
+                _="on htmx:beforeSend call resetFileInput()">
+                {% csrf_token %}
+                <div class="relative">
+                    <input type="file" name="file" id="id_file" class="hidden" onchange="updateFileName(this)">
+                    <label for="id_file" class="cursor-pointer bg-gray-700 hover:bg-gray-600 text-gray-300 font-bold py-2 px-4 rounded inline-flex items-center">
+                        <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M13 10v6H7v-6H2l8-8 8 8h-5zM0 18h20v2H0v-2z"/>
+                        </svg>
+                        <span id="file-name">Choose a file</span>
+                    </label>
+                </div>
+                <button type="submit" class="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                    Upload
+                </button>
+            </form>
+
+
             </div>
         </div>
     </div>
@@ -100,6 +114,21 @@
         }, time);
     }
     scrollToBottom()
+
+    function updateFileName(input) {
+        const fileName = input.files[0] ? input.files[0].name : 'Choose a file';
+        document.getElementById('file-name').textContent = fileName;
+    }
+
+    function resetFileInput() {
+        document.getElementById('id_file').value = '';
+        document.getElementById('file-name').textContent = 'Choose a file';
+    }
+
+    // Add event listener to reset file input when the form is submitted
+    document.getElementById('chat_file_form').addEventListener('htmx:afterOnLoad', function(event) {
+        resetFileInput();
+    });
 
 </script>
 {% endblock %}
