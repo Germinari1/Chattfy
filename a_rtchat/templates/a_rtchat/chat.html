@@ -79,9 +79,11 @@
         </div>
     </div>
     {% if chat_group.members.exists %}
-    <a href="{% url 'chatroom-leave' chat_group.group_name %}">
-        {% include 'a_rtchat/partials/modal_chat_leave.html' %}
-    </a>
+    <div class="flex justify-between items-center mt-4">
+        <a href="{% url 'chatroom-leave' chat_group.group_name %}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+            Leave Chat
+        </a>
+    </div>   
     {% endif %}
 </wrapper>
 
